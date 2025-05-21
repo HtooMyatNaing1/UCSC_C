@@ -1,0 +1,4 @@
+Blanks = 2
+Digits = 41
+Letters = 34
+Others = 3

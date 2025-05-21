@@ -1,0 +1,4 @@
+
+Digits = 16
+Blanks = 14
+Total characters = 59

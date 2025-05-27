@@ -1,0 +1,105 @@
+/*
+
+    Use of File I/O 
+
+    by Htoo Myat
+
+    5/27/2025
+
+*/
+
+
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+
+void print_file(FILE *fileptr) {
+
+    int c;
+
+    rewind(fileptr); // Reset file pointer to the beginning
+
+    while ((c = getc(fileptr)) != EOF) {
+
+        putc(c, stdout); // Print each character to standard output
+
+    }
+
+}
+
+
+
+void double_space(FILE *ifileptr, FILE *ofileptr) {
+
+    int c;
+
+    rewind(ifileptr); // Reset input file pointer to the beginning
+
+    while ((c = getc(ifileptr)) != EOF) {
+
+        putc(c, ofileptr); // Write the character to output file
+
+        if (c == '\n') {
+
+            putc('\n', ofileptr); // Add an extra newline for double spacing
+
+        }
+
+    }
+
+}
+
+
+
+int main(int argc, char *argv[]) {
+
+    FILE *ifileptr, *ofileptr;
+
+
+
+    if (argc != 3) {
+
+        printf("Need executable input_file output_file\n");
+
+        exit(1); // Exit if the number of arguments is incorrect
+
+    }
+
+
+
+    ifileptr = fopen(argv[1], "r+"); // Open input file for reading
+
+    ofileptr = fopen(argv[2], "w+"); // Open output file for writing
+
+
+
+    printf("My %s file as read is\n\n", argv[1]);
+
+    print_file(ifileptr); // Print the contents of the input file
+
+    printf("\n\n");
+
+
+
+    double_space(ifileptr, ofileptr); // Double space the contents and write to output file
+
+    printf("My %s file as written is\n\n", argv[2]);
+
+    print_file(ofileptr); // Print the contents of the output file
+
+    printf("\n\n");
+
+    fclose(ifileptr); // Close the input file
+
+    fclose(ofileptr); // Close the output file
+
+    printf("Done.\n");
+
+
+
+    return 0; // Exit the program successfully
+
+}
